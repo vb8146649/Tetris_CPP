@@ -7,7 +7,7 @@ using namespace std;
 class Block{
     public:
         Block();
-        void Draw();
+        void Draw(int offsetX,int offsetY);
         void Move(int rows, int columns);
         vector<Position> GetCellPositions();
         void Rotate();

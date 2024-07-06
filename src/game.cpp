@@ -7,7 +7,21 @@ Game::Game()
     nextBlock = GetRandomBlock();
     grid = Grid();
     grid.Initialize();
-    blocks = {IBlock(), TBlock(), LBlock(), OBlock(), SBlock(), JBlock(), ZBlock()};
+    score = 0;
+    blocks = GetAllBlocks();
+    InitAudioDevice();
+    music=LoadMusicStream("src/music.mp3");
+    PlayMusicStream(music);
+    rotateSound = LoadSound("src/rotate.mp3");
+    clearSound = LoadSound("src/clear.mp3");
+}
+
+Game::~Game()
+{
+    UnloadMusicStream(music);
+    UnloadSound(clearSound);
+    UnloadSound(rotateSound);
+    CloseAudioDevice();
 }
 
 Block Game::GetRandomBlock()
@@ -30,14 +44,16 @@ vector<Block> Game::GetAllBlocks()
 void Game::Draw()
 {
     grid.Draw();
-    currentBlock.Draw();
+    currentBlock.Draw(11,11);
+    nextBlock.Draw(270,270);
 }
 
 void Game::HandleInput()
 {
     int keyPressed = GetKeyPressed();
-    if(gameOver && keyPressed!=0){
-        gameOver=false;
+    if (gameOver && keyPressed != 0)
+    {
+        gameOver = false;
         Reset();
     }
     switch (keyPressed)
@@ -53,6 +69,7 @@ void Game::HandleInput()
         break;
     case KEY_DOWN:
         MoveBlockDown();
+        UpdateScore(0,1);
         break;
     }
 }
@@ -107,8 +124,13 @@ void Game::LockBlock()
         gameOver = true;
     }
     nextBlock = GetRandomBlock();
-    grid.ClearFullRows();
+    int rowsCleared=grid.ClearFullRows();
+    if(rowsCleared>0){
+        PlaySound(clearSound);
+        UpdateScore(rowsCleared,0);
+    }
 }
+
 
 bool Game::IsBlockOutside()
 {
@@ -131,6 +153,8 @@ void Game::RotateBlock()
         if (IsBlockOutside() || BlockFits() == false)
         {
             currentBlock.UndoRotation();
+        }else{
+            PlaySound(rotateSound);
         }
     }
 }
@@ -148,9 +172,30 @@ bool Game::BlockFits()
     return true;
 }
 
-void Game::Reset(){
+void Game::UpdateScore(int linesCleared, int moveDownPoints)
+{
+    switch (linesCleared)
+    {
+    case 1:
+        score += 100;
+        break;
+    case 2:
+        score += 300;
+        break;
+    case 3:
+        score += 500;
+        break;
+    default:
+        break;
+    }
+    score+=moveDownPoints;
+}
+
+void Game::Reset()
+{
     grid.Initialize();
-    blocks=GetAllBlocks();
+    blocks = GetAllBlocks();
     currentBlock = GetRandomBlock();
     nextBlock = GetRandomBlock();
+    score=0;
 }
