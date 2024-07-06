@@ -120,7 +120,7 @@ To download and run this project, follow these steps:
 
 ### Screenshot
 
-![Tetris Game](https://github.com/vb8146649/Tetris_CPP/blob/main/game_preview.png)
+<img src="https://github.com/vb8146649/Tetris_CPP/blob/main/game_preview.png" alt="Tetris_Preview" width="500" height="920">
 
 ## Why Tetris?
 
