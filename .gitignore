@@ -1,5 +1,6 @@
 # Ignore build artifacts and binaries
 /build/
+raylib
 /bin/
 *.o
 *.so
@@ -8,7 +9,8 @@
 *.a
 *.out
 *.exe
-
+*.dsym
+main
 # Ignore temporary and log files
 *.log
 *.tmp
