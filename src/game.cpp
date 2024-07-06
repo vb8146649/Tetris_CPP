@@ -14,6 +14,7 @@ Game::Game()
     PlayMusicStream(music);
     rotateSound = LoadSound("src/rotate.mp3");
     clearSound = LoadSound("src/clear.mp3");
+    spaceKey=false;
 }
 
 Game::~Game()
@@ -58,6 +59,9 @@ void Game::HandleInput()
     }
     switch (keyPressed)
     {
+    case KEY_SPACE:
+        spaceKey=true;
+        break;
     case KEY_UP:
         RotateBlock();
         break;
@@ -111,6 +115,7 @@ void Game::MoveBlockDown()
     }
 }
 
+
 void Game::LockBlock()
 {
     vector<Position> tiles = currentBlock.GetCellPositions();
@@ -118,6 +123,7 @@ void Game::LockBlock()
     {
         grid.grid[item.row][item.column] = currentBlock.id;
     }
+    spaceKey=false;
     currentBlock = nextBlock;
     if (BlockFits() == false)
     {

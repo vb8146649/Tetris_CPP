@@ -16,7 +16,6 @@ main
 *.tmp
 
 # Ignore other editor-specific files
-.vscode/
 .idea/
 *.swp
 *~

@@ -27,7 +27,7 @@ int main()
     {
         UpdateMusicStream(game.music);
         game.HandleInput();
-        if (EventTriggered(0.2))
+        if (EventTriggered(0.2) || game.spaceKey)
         {
             game.MoveBlockDown();
         }

@@ -12,6 +12,7 @@ class Game{
         bool gameOver;
         int score;
         void MoveBlockDown();
+        bool spaceKey;
         Music music;
 
     private:
