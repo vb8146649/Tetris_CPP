@@ -6,6 +6,11 @@ Welcome to my Tetris game! This is a classic Tetris game created using C++ and t
 
 This Tetris game replicates the classic tile-matching puzzle game where the player must rotate, move, and drop Tetriminos within a matrix. The objective is to clear as many lines as possible by completing horizontal rows of blocks without any gaps. As the game progresses, the Tetriminos fall faster, increasing the challenge for the player.
 
+**Moves :**
+- *Arrow Key (left , right , down)* for movements.
+- *Spacebar* for Skipping the turn.
+- *ArrowUp* Key for Rotation.
+
 ## Getting Started
 
 To download and run this project, follow these steps:
@@ -23,100 +28,11 @@ To download and run this project, follow these steps:
     cd Tetris_CPP
     ```
 
-2. Create a `tasks.json` file in the `.vscode` folder with the following content:
+2. Make sure to Create a `tasks.json` file in the `.vscode` folder with the same content in the repository if not present.
 
-    ```json
-    {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "build debug",
-            "type": "process",
-            "command": "make",
-            "args": [
-                "PLATFORM=PLATFORM_DESKTOP",
-                "BUILD_MODE=DEBUG"
-            ],
-            "windows": {
-                "command": "C:/raylib/w64devkit/bin/mingw32-make.exe",
-                "args": [
-                    "RAYLIB_PATH=C:/raylib/raylib",
-                    "PROJECT_NAME=${fileBasenameNoExtension}",
-                    "OBJS=src/*.cpp",
-                    "BUILD_MODE=DEBUG"
-                ]
-            },
-            "osx": {
-                "args": [
-                    "PROJECT_NAME=${fileBasenameNoExtension}",
-                    "OBJS=src/*.cpp",
-                    "BUILD_MODE=DEBUG"
-                ]
-            },
-            "linux": {
-                "args": [
-                    "PROJECT_NAME=${fileBasenameNoExtension}",
-                    "DESTDIR=/home/linuxbrew/.linuxbrew",
-                    "RAYLIB_LIBTYPE=SHARED",
-                    "EXAMPLE_RUNTIME_PATH=/home/linuxbrew/.linuxbrew/lib",
-                    "OBJS=src/*.cpp",
-                    "BUILD_MODE=DEBUG"
-                ]
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": [
-                "$gcc"
-            ]
-        },
-        {
-            "label": "build release",
-            "type": "process",
-            "command": "make",
-            "args": [
-                "PLATFORM=PLATFORM_DESKTOP"
-            ],
-            "windows": {
-                "command": "C:/raylib/w64devkit/bin/mingw32-make.exe",
-                "args": [
-                    "RAYLIB_PATH=C:/raylib/raylib",
-                    "PROJECT_NAME=${fileBasenameNoExtension}",
-                    "OBJS=*.cpp"
-                ]
-            },
-            "osx": {
-                "args": [
-                    "PROJECT_NAME=${fileBasenameNoExtension}",
-                    "OBJS=*.cpp"
-                ]
-            },
-            "linux": {
-                "args": [
-                    "PROJECT_NAME=${fileBasenameNoExtension}",
-                    "DESTDIR=/home/linuxbrew/.linuxbrew",
-                    "RAYLIB_LIBTYPE=SHARED",
-                    "EXAMPLE_RUNTIME_PATH=/home/linuxbrew/.linuxbrew/lib",
-                    "OBJS=*.cpp"
-                ]
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": false
-            },
-            "detail": "compiler: C:\\raylib\\mingw\\bin\\g++.exe"
-        }
-        ]
-    }
-    ```
 
 3. Build and run the game in VS Code:
     - Use Shortcut Key **F5** or just run the program normally.
-
 
 ### Screenshot
 
